@@ -7,8 +7,8 @@ const YourStories = (props) => {
   const [yourStories, setYourStories] = useState([]);
   const [maxStoriesInRow, setMaxStoriesInRow] = useState(4);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 576);
@@ -23,7 +23,7 @@ const YourStories = (props) => {
   }, []);
 
   const fetchYourStories = async () => {
-    
+    setIsLoading(true); 
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/api/user/posts`,
@@ -45,7 +45,9 @@ const YourStories = (props) => {
       }
     } catch (error) {
       console.error("Error fetching your stories:", error);
-    } 
+    }  finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const YourStories = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.selectedFilters]);
 
-  if (!isMobile  ) {
+  if (isMobile && isLoading ) {
     return (
       <div className={styles.categoryContainer}>
         <div
@@ -62,7 +64,7 @@ const YourStories = (props) => {
           }}
           className={styles.categoryHeader}
         >
-          
+           Loading...
         </div>
       </div>
     );
@@ -77,7 +79,7 @@ const YourStories = (props) => {
           }}
           className={styles.categoryHeader}
         >
-          You have no stories. Create one now!
+          You have no stories. Create one now by clicking on Add story button!!!
         </div>
         <Link to="/?addstory=true">
           <button className={styles.addStoryBtn}>Add Story</button>
