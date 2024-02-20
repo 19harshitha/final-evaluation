@@ -8,11 +8,7 @@ const YourStories = (props) => {
   const [maxStoriesInRow, setMaxStoriesInRow] = useState(4);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> f10f623cd5d80e358834a2d00f716c234e117859
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 576);
@@ -27,11 +23,8 @@ const YourStories = (props) => {
   }, []);
 
   const fetchYourStories = async () => {
-<<<<<<< HEAD
+
     setIsLoading(true);
-=======
-    setIsLoading(true); 
->>>>>>> f10f623cd5d80e358834a2d00f716c234e117859
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/api/user/posts`,
@@ -53,11 +46,8 @@ const YourStories = (props) => {
       }
     } catch (error) {
       console.error("Error fetching your stories:", error);
-<<<<<<< HEAD
+
     } finally {
-=======
-    }  finally {
->>>>>>> f10f623cd5d80e358834a2d00f716c234e117859
       setIsLoading(false);
     }
   };
@@ -67,11 +57,8 @@ const YourStories = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.selectedFilters]);
 
-<<<<<<< HEAD
+
   if (isMobile && isLoading) {
-=======
-  if (isMobile && isLoading ) {
->>>>>>> f10f623cd5d80e358834a2d00f716c234e117859
     return (
       <div className={styles.categoryContainer}>
         <div
@@ -80,11 +67,9 @@ const YourStories = (props) => {
           }}
           className={styles.categoryHeader}
         >
-<<<<<<< HEAD
+
           Loading...
-=======
-           Loading...
->>>>>>> f10f623cd5d80e358834a2d00f716c234e117859
+
         </div>
       </div>
     );
